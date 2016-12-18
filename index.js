@@ -83,9 +83,12 @@ var Keystone = function () {
 		this.set('cloudinary config', true);
 	}
 
+  // init cassandrom, we use mongoose as a key to compatibility
+	this.set('mongoose', require('cassandrom'));
+
 	// init mongoose
-	this.set('mongoose', require('mongoose'));
-	this.mongoose.Promise = require('es6-promise').Promise;
+	// this.set('mongoose', require('mongoose'));
+	// KM this.mongoose.Promise = require('es6-promise').Promise;
 
 	// Attach middleware packages, bound to this instance
 	this.middleware = {
@@ -104,7 +107,8 @@ Keystone.prototype.prefixModel = function (key) {
 		key = modelPrefix + '_' + key;
 	}
 
-	return require('mongoose/lib/utils').toCollectionName(key);
+	// KM return require('mongoose/lib/utils').toCollectionName(key);
+	throw new Error('implement');
 };
 
 /* Attach core functionality to Keystone.prototype */
